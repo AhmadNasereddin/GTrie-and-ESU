@@ -266,7 +266,7 @@ public class GTrieNode {
 	  			newcond.add(p2);
 	  			}
   			
-	  			cond.addLast(newcond);
+	  			//cond.addLast(newcond);
 	  			cond.add(newcond);
 	  			System.out.println("COND: "+ cond.size());
   			  }
