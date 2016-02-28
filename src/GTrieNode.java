@@ -38,7 +38,8 @@ public class GTrieNode {
 	Pair<Character, Character> p;
 	Pair<Integer,Integer> p2;
 	
-	static LinkedList<LinkedList<Pair>> cond  = new LinkedList<LinkedList<Pair>>();
+	//static LinkedList<LinkedList<Pair>> cond  = new LinkedList<LinkedList<Pair>>();
+	LinkedList<LinkedList<Pair>> cond = null;
 	 int[] conn = null;
      int nconn;
      boolean is_graph;
@@ -56,6 +57,7 @@ public class GTrieNode {
        
 	public GTrieNode(int d) throws FileNotFoundException, UnsupportedEncodingException {
 		//writer = new PrintWriter(occ_file, "UTF-8");
+		cond  = new LinkedList<LinkedList<Pair>>();
 		depth = d;
 
 		is_graph = false;
@@ -353,7 +355,123 @@ public class GTrieNode {
 		*/
 	}
 	public void goCondDir() {
-		// TODO Auto-generated method stub
+		/*
+		int i;
+		  int j;
+		  int ci;
+		  int mylim;
+		  int glaux;
+		  int ncand;
+		
+		  int p;
+		  char ft,st;
+			int fft, sst;
+			
+		  mylim =Integer.MAX_VALUE;
+		  
+		  if (!this.cond_ok)
+		  {
+			
+			i = 1;
+			for(int jN=0; jN < cond.size() -1 ; jN ++)
+			{
+				glaux = -1;
+				
+				LinkedList<Pair> jj2N = cond.get(jN);
+				Pair kk3 = jj2N.get(jj2N.size()-1);
+				int kN = 0;
+				for(kN = 0 ; kN < jj2N.size()-1 ; kN++){
+					Pair kk2N = jj2N.get(kN);
+					//ft = (char)kk2N.getFirst();
+					//st = (char)kk2N.getSecond();
+					fft =  (int) kk2N.getFirst();//(int) ft;
+					sst = (int) kk2N.getSecond();//(int) st;
+					int tat = mymap[fft];
+					int tat2 = mymap[sst];
+					if ((sst < glk) && (mymap[fft] > mymap[sst]))
+						  break;
+					else if (sst == glk && mymap[fft] > glaux)
+					{		System.out.println("ENTER, sst = glk: "+ glk + "  mymap[fft]: "+ mymap[fft] + "  GLAUX:" + glaux);
+							glaux = mymap[fft];
+					}	}
+				if (kk3 == jj2N.get(kN))
+				  {
+					i = 0;
+					if (glaux < mylim)
+					{
+						mylim = glaux;
+						System.out.println("kk == kkend,  mylim = glaux : " + mylim);
+						System.out.println("mymap[0]: "+mymap[0]+",   mymap[1]: "+mymap[1]+" , mymap[2]:"+mymap[2]);
+					}
+				  }
+			}
+			
+			if (i != 0)
+				return;
+		  }
+		  
+		  
+/*
+		 
+		  if (!cond_ok) {
+		    i = 1;
+		    list< list<iPair> >::const_iterator jj, jjend;
+		    list<iPair>::const_iterator kk, kkend;
+		    for (jj=cond.begin(), jjend=cond.end(); jj!=jjend; ++jj) {
+		      glaux = -1;
+		      for (kk=(*jj).begin(), kkend=(*jj).end(); kk!=kkend; ++kk)
+			if (kk->second<glk && mymap[kk->first] > mymap[kk->second])
+			  break;
+			else if (kk->second==glk && mymap[kk->first]>glaux)
+			  glaux = mymap[kk->first];
+		      if (kk==kkend) {
+			i = 0;
+			if (glaux < mylim) mylim=glaux;
+		      }
+		    }
+		    if (i) return;
+		  }
+		  if (mylim == INT_MAX) mylim = 0;
+		    
+		  ncand=0;
+		  j=ci=INT_MAX;
+		  for (i=0; i<nconn; i++) {
+		    glaux = numnei[mymap[conn[i]]];
+		    if (glaux<j) {
+		      ci = mymap[conn[i]];
+		      j = glaux;
+		    }
+		  }
+
+		  glaux = j;
+		  ncand = ci;
+		  for (p=&fastnei[ncand][j-1], ci= glaux-1; ci>=0; ci--, p--) {    
+		    i = *p;
+		    if (i<mylim) break;
+		    if (used[i]) continue;
+		    mymap[glk] = i;
+
+		    for (j=0; j<glk; j++)
+		      if (in[j] != adjM[mymap[j]][i])
+			break;
+		    if (j<glk) continue;
+		    bool *b = &adjM[i][0];
+		    for (j=0; j<glk; j++)
+		      if (out[j] != *(b+mymap[j]))
+			break;
+		    if (j<glk) continue;
+		    
+		    if (is_graph) {
+		      frequency++;
+		      if (Global::show_occ) {
+			for (int k = 0; k<=glk; k++)
+			  for (int l = 0; l<=glk; l++)
+			    fputc(adjM[mymap[k]][mymap[l]]?'1':'0', Global::occ_file);
+			fputc(':', Global::occ_file);
+			for (int k = 0; k<=glk; k++)
+			  fprintf(Global::occ_file, " %d", mymap[k]+1);
+			fputc('\n', Global::occ_file);
+		      }*/
 		
 	}
 	public void goCondUndir() {
@@ -373,18 +491,36 @@ public class GTrieNode {
 		  
 		if (!this.cond_ok)
 		  {
+			System.out.println("================================================================");  
+			  for(int jN=0; jN < cond.size()  ; ++jN)
+				{
+					LinkedList<Pair> jj2N = cond.get(jN);
+					
+					int kN = 0;
+					for(kN = 0 ; kN < jj2N.size() ; ++kN){
+						Pair kk2N = jj2N.get(kN);
+						fft =  (int) kk2N.getFirst();//(int) ft;
+						sst = (int) kk2N.getSecond();//(int) st;
+						System.out.println("Cond  f:" + fft + " ,   S:" + sst);
+						
+					}
+					System.out.println("-------------------");
+				}
+			  
+			  System.out.println("================================================================");
+			
 			i = 1;
 			
 			//counterT++;
 			//System.out.println("FAAAAT  " + counterT);
-			for(int jN=0; jN < cond.size() -1 ; jN ++)
+			for(int jN=0; jN < cond.size()  ;  ++jN )
 			{
 				glaux = -1;
 				
 				LinkedList<Pair> jj2N = cond.get(jN);
 				Pair kk3 = jj2N.get(jj2N.size()-1);
 				int kN = 0;
-				for(kN = 0 ; kN < jj2N.size()-1 ; kN++){
+				for(kN = 0 ; kN < jj2N.size() ; ++kN){
 					Pair kk2N = jj2N.get(kN);
 					//ft = (char)kk2N.getFirst();
 					//st = (char)kk2N.getSecond();
@@ -395,15 +531,11 @@ public class GTrieNode {
 					if ((sst < glk) && (mymap[fft] > mymap[sst]))
 						  break;
 					else if (sst == glk && mymap[fft] > glaux)
-					{
-							System.out.println("ENTER, sst = glk: "+ glk + "  mymap[fft]: "+ mymap[fft] + "  GLAUX:" + glaux);
-							
+					{		System.out.println("ENTER, sst = glk: "+ glk + "  mymap[fft]: "+ mymap[fft] + "  GLAUX:" + glaux);
 							glaux = mymap[fft];
-					}
-					
-				}
-				
-				if (kk3 == jj2N.get(kN))
+					}	}
+				if(kN > 0)
+				if (kk3 == jj2N.get(kN -1))
 				  {
 					i = 0;
 					if (glaux < mylim)
@@ -411,7 +543,6 @@ public class GTrieNode {
 						mylim = glaux;
 						System.out.println("kk == kkend,  mylim = glaux : " + mylim);
 						System.out.println("mymap[0]: "+mymap[0]+",   mymap[1]: "+mymap[1]+" , mymap[2]:"+mymap[2]);
-						
 					}
 				  }
 			}
