@@ -19,11 +19,12 @@ public class esu {
 	
 	public static void readArguments(int argc, String[] argv)
 	{
+		/*
 	  if (argc != 3)
 	  {
 		System.out.print("Usage: ./esu <dir/undir> <size> <graph>\n");
 		System.exit(1);
-	  }
+	  }*/
 
 	  String arg_dir = argv[0];
 	  if (arg_dir.charAt(0) == 'd')
@@ -105,8 +106,7 @@ public class esu {
 		if (va.get(i) != vb.get(i))
 		{
 		  g.addEdge(va.get(i) - 1, vb.get(i) - 1);
-		  //if(!dir)/// TESTTTT
-			//  g.addEdge( vb.get(i) - 1, va.get(i) - 1);
+		  
 		}
 	  }
 
@@ -142,7 +142,7 @@ public class esu {
 	
 	public static void countSubgraphs1(GraphMatrix g, int k)
 	{
-		//System.out.printf("In Count 1\n");
+		
 	  int i;
 	  int[] v = new int[1];
 	  
@@ -166,12 +166,12 @@ public class esu {
 	
 	public static void go1(int n, int size, int nextv, int[] ext)
 	{
-		//System.out.printf("In go1  \n");
+		
 	  current[size++] = n;
 
 	  if (size == motif_size)
 	  {
-		  //System.out.printf("In IF  \n");
+		  
 		String s = new String(new char[motif_size * motif_size+1]);
 		s = Isomorphism.canonicalStrNauty(g, current, s);
 		_sg.incrementString(s);
@@ -271,11 +271,10 @@ public class esu {
 	
 	
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
-	
+		
 		Scanner s = new Scanner(System.in);
 		String input = s.nextLine();
-		input = "u 3 D:\\TestG2.txt";//"u 3 D:\\s420_st.txt";
+		input = "u 3 ./TestG2.txt";//"u 3 D:\\s420_st.txt";
 		String [] data = input.split(" ");
 		 readArguments(data.length, data); 
 		  g = loadGraph(graph_file);
@@ -328,7 +327,7 @@ public class esu {
 			  
 			  Isomorphism.initNauty(motif_size, dir);
 			  //_sg = new GraphTree();
-			  gt_original.readFromFile("D:\\undir3.gt");
+			  gt_original.readFromFile("./undir3.gt");
 			  
 			  gt_original.census(g);
 			  /*
