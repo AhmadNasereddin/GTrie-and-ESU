@@ -137,7 +137,7 @@ public class GTrieNode {
     	  
     	for (int totot = 0; totot < MAX_BUF; totot++)
   		{
-    		  System.out.println("---> buf[t]: "+  buffer[totot]+ " , t: "+ totot);
+    		  //System.out.println("---> buf[t]: "+  buffer[totot]+ " , t: "+ totot);
   			if (buffer[totot] == 0)
   				break;
   		}
@@ -153,7 +153,7 @@ public class GTrieNode {
     	  int nbytes = aux >> 1;
 
   		pos = 1;
-  		System.out.println("Starting11: POS: "+ pos + " nbytes: " + nbytes + "   AUX:" +(int)aux );
+  		//System.out.println("Starting11: POS: "+ pos + " nbytes: " + nbytes + "   AUX:" +(int)aux );
   		
   		for (i = 0, j = 1, nchilds = 0; i < nbytes; i++, j *= BASE_FORMAT)
   		{
@@ -165,7 +165,7 @@ public class GTrieNode {
   		  nchilds += (int)aux * j;
   		}
   		
-  		System.out.println("Starting: POS: "+ pos + " NChilds: " + nchilds);
+  		//System.out.println("Starting: POS: "+ pos + " NChilds: " + nchilds);
   		
   	// Connections: outgoing
   			aux = (char) (buffer[pos++] - BASE_FIRST);
@@ -186,7 +186,7 @@ public class GTrieNode {
   			  }
   			}
 
-  			System.out.println("After OUTGoing: POS: "+ pos + " Depth: " + depth);
+  			//System.out.println("After OUTGoing: POS: "+ pos + " Depth: " + depth);
 
   			// Connections: ingoing
   			aux = (char) (buffer[pos++] - BASE_FIRST);
@@ -209,7 +209,7 @@ public class GTrieNode {
 
   			
   			
-  			System.out.println("After INGoing: POS: "+ pos + " Depth: " + depth);
+  			//System.out.println("After INGoing: POS: "+ pos + " Depth: " + depth);
 
   			// Previous Conditions
   			int t = buffer[pos];
@@ -222,12 +222,12 @@ public class GTrieNode {
 			if (aux == 0)
   			{
   				this.cond_ok = true;
-  				System.out.println("cond_ok = true");
+  				//System.out.println("cond_ok = true");
   			}
   			else
   			{
   				this.cond_ok = false;
-  				System.out.println("cond_ok = false");
+  				//System.out.println("cond_ok = false");
   			}
 
 			System.out.println("Before aux"+ (int)aux + "  POS:"+ pos);
@@ -244,7 +244,7 @@ public class GTrieNode {
 	  				int LOLO = buffer[pos];
 	  			  aux = (char) ((buffer[pos++] - BASE_FIRST) - 1);
 	  			  test = (int)aux;
-	  			  System.out.println("Inside aux "+ (int)aux + "  POS:"+ pos + "Ncond: " + ncond + "Buffer" + LOLO);
+	  			  //System.out.println("Inside aux "+ (int)aux + "  POS:"+ pos + "Ncond: " + ncond + "Buffer" + LOLO);
 	  			  if ((int)aux < 0 || (int)aux > 6000)
 	  				  {
 	  				  	aux = (char) -1;
@@ -262,7 +262,7 @@ public class GTrieNode {
 	  			  p2.setSecond((int)aux);
 	  			  test = (int)aux;
 	  			  //Pair<Character, Character> p = new Pair<Character, Character>(aux, aux2);
-	  			System.out.println("Values being added to P,  f:"+ p2.getFirst() + "   S:"+p2.getSecond());
+	  			//System.out.println("Values being added to P,  f:"+ p2.getFirst() + "   S:"+p2.getSecond());
 	  			  //newcond.addLast(p);
 	  			//newcond.addLast(p2);
 	  			newcond.add(p2);
@@ -270,7 +270,7 @@ public class GTrieNode {
   			
 	  			//cond.addLast(newcond);
 	  			cond.add(newcond);
-	  			System.out.println("COND: "+ cond.size());
+	  			//System.out.println("COND: "+ cond.size());
   			  }
   			}
 
@@ -491,24 +491,7 @@ public class GTrieNode {
 		  
 		if (!this.cond_ok)
 		  {
-			System.out.println("================================================================");  
-			  for(int jN=0; jN < cond.size()  ; ++jN)
-				{
-					LinkedList<Pair> jj2N = cond.get(jN);
-					
-					int kN = 0;
-					for(kN = 0 ; kN < jj2N.size() ; ++kN){
-						Pair kk2N = jj2N.get(kN);
-						fft =  (int) kk2N.getFirst();//(int) ft;
-						sst = (int) kk2N.getSecond();//(int) st;
-						System.out.println("Cond  f:" + fft + " ,   S:" + sst);
-						
-					}
-					System.out.println("-------------------");
-				}
-			  
-			  System.out.println("================================================================");
-			
+		
 			i = 1;
 			
 			//counterT++;
@@ -531,7 +514,7 @@ public class GTrieNode {
 					if ((sst < glk) && (mymap[fft] > mymap[sst]))
 						  break;
 					else if (sst == glk && mymap[fft] > glaux)
-					{		System.out.println("ENTER, sst = glk: "+ glk + "  mymap[fft]: "+ mymap[fft] + "  GLAUX:" + glaux);
+					{		//System.out.println("ENTER, sst = glk: "+ glk + "  mymap[fft]: "+ mymap[fft] + "  GLAUX:" + glaux);
 							glaux = mymap[fft];
 					}	}
 				if(kN > 0)
@@ -541,8 +524,8 @@ public class GTrieNode {
 					if (glaux < mylim)
 					{
 						mylim = glaux;
-						System.out.println("kk == kkend,  mylim = glaux : " + mylim);
-						System.out.println("mymap[0]: "+mymap[0]+",   mymap[1]: "+mymap[1]+" , mymap[2]:"+mymap[2]);
+						//System.out.println("kk == kkend,  mylim = glaux : " + mylim);
+						//System.out.println("mymap[0]: "+mymap[0]+",   mymap[1]: "+mymap[1]+" , mymap[2]:"+mymap[2]);
 					}
 				  }
 			}
@@ -551,7 +534,7 @@ public class GTrieNode {
 				return;
 		  }
 		
-		  System.out.println("VALUES mylim: "+ mylim);
+		  //System.out.println("VALUES mylim: "+ mylim);
 		
 		  if (mylim == Integer.MAX_VALUE)
 		  {
@@ -568,13 +551,13 @@ public class GTrieNode {
 			{
 			  ci = mymap[conn[i]];
 			  j = glaux;
-			  System.out.println("VALUES_INSIDE CI: "+ ci+ "  J:" + j);
+			  //System.out.println("VALUES_INSIDE CI: "+ ci+ "  J:" + j);
 			}
 		  }
 	    
 		  glaux = j;
 		  ncand = ci;
-		  System.out.println("VALUES CI: " + glaux + "  J:" + j);
+		  //System.out.println("VALUES CI: " + glaux + "  J:" + j);
 		  
 		  for (p = fastnei[ncand][j - 1], ci = glaux - 1; ci >= 0; ci--, p--)
 		  {
@@ -605,7 +588,7 @@ public class GTrieNode {
 			{
 			  frequency++;
 			  counterT ++;
-			  System.out.println("PLUS: " + counterT);
+			  //System.out.println("PLUS: " + counterT);
 			  
 			if (show_occ)
 			  {
